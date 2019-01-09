@@ -2,7 +2,7 @@
   "name": "consumer",
   "version": "1.0.0",
   "scripts": {
-    "contract-tests": "jest __tests__/ --runInBand --setupFiles ./pactSetup.js --setupTestFrameworkScriptFile ./pactTestWrapper.js "
+    "contract-tests": "jest __tests__/ --runInBand"
   },
   "jest": {
     "testEnvironment": "node"

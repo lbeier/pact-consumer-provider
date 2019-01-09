@@ -1,0 +1,102 @@
+I, [2019-01-09T22:59:55.176907 #18078]  INFO -- : Received request GET /users/1
+I, [2019-01-09T22:59:55.179939 #18078]  INFO -- : Registered expected interaction GET /users/1
+D, [2019-01-09T22:59:55.180131 #18078] DEBUG -- : {
+  "path": "/users/1",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Accept": "application/json",
+    "User-Agent": "axios/0.18.0",
+    "Host": "127.0.0.1:9999",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+D, [2019-01-09T22:59:55.180390 #18078] DEBUG -- : {
+  "description": "The id for valid active customer",
+  "providerState": "I have a valid active customer",
+  "request": {
+    "method": "GET",
+    "path": "/users/1",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": 1,
+      "name": "Customer name",
+      "birthday": "1989-02-11",
+      "isActive": true
+    }
+  }
+}
+I, [2019-01-09T22:59:55.180595 #18078]  INFO -- : Found matching response for GET /users/1
+D, [2019-01-09T22:59:55.180952 #18078] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "id": 1,
+    "name": "Customer name",
+    "birthday": "1989-02-11",
+    "isActive": true
+  }
+}
+I, [2019-01-09T22:59:55.193128 #18078]  INFO -- : Verifying - interactions matched
+I, [2019-01-09T22:59:55.198578 #18078]  INFO -- : Cleared interactions
+I, [2019-01-09T22:59:55.207119 #18078]  INFO -- : Registered expected interaction GET /users/2
+D, [2019-01-09T22:59:55.207343 #18078] DEBUG -- : {
+  "description": "The id for an invalid customer",
+  "providerState": "I return 404",
+  "request": {
+    "method": "GET",
+    "path": "/users/2",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+    }
+  }
+}
+I, [2019-01-09T22:59:55.209286 #18078]  INFO -- : Received request GET /users/2
+D, [2019-01-09T22:59:55.209526 #18078] DEBUG -- : {
+  "path": "/users/2",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Accept": "application/json",
+    "User-Agent": "axios/0.18.0",
+    "Host": "127.0.0.1:9999",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2019-01-09T22:59:55.209782 #18078]  INFO -- : Found matching response for GET /users/2
+D, [2019-01-09T22:59:55.209914 #18078] DEBUG -- : {
+  "status": 404,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+  }
+}
+I, [2019-01-09T22:59:55.217284 #18078]  INFO -- : Verifying - interactions matched
+I, [2019-01-09T22:59:55.222323 #18078]  INFO -- : Cleared interactions
+I, [2019-01-09T22:59:55.228413 #18078]  INFO -- : Updating pact for A Golang provider at /Users/lbeier/sandbox/pact-consumer-provider/consumer/pacts/a_js_consumer-a_golang_provider.json
+I, [2019-01-09T22:59:55.229343 #18078]  INFO -- : *****************************************************************************
+I, [2019-01-09T22:59:55.229480 #18078]  INFO -- : Updating existing file ./Users/lbeier/sandbox/pact-consumer-provider/consumer/pacts/a_js_consumer-a_golang_provider.json as pactfile_write_mode is :update
+I, [2019-01-09T22:59:55.229531 #18078]  INFO -- : Only interactions defined in this test run will be updated.
+I, [2019-01-09T22:59:55.229576 #18078]  INFO -- : As interactions are identified by description and provider state, pleased note that if either of these have changed, the old interactions won't be removed from the pact file until the specs are next run with :pactfile_write_mode => :overwrite.
+I, [2019-01-09T22:59:55.229620 #18078]  INFO -- : *****************************************************************************
