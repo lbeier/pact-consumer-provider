@@ -9,10 +9,10 @@ const ENDPOINT = {
   port: 9999
 }
 
-describe("Consumer testing", () => {
+describe("Consumer contract with Service A", () => {
   const provider = new Pact({
-    consumer: "A JS consumer",
-    provider: "A Golang provider",
+    consumer: "A client",
+    provider: "Service A",
     port: 9999,
     pactfileWriteMode: 'update',
     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
@@ -35,8 +35,8 @@ describe("Consumer testing", () => {
 
   it("should return customer information if customer active", done => {
     provider.addInteraction({
-      state: "I return the customer information",
-      uponReceiving: "The id for valid active customer",
+      state: "A customer with ID 1 exists",
+      uponReceiving: "a GET request to /users/1",
       withRequest: {
         method: "GET",
         path: "/users/1",
@@ -64,8 +64,8 @@ describe("Consumer testing", () => {
 
   it("should return 404 information if customer doesn't exist", done => {
     provider.addInteraction({
-      state: "I return 404",
-      uponReceiving: "The id for an invalid customer",
+      state: "A customer with ID 2 doesn't exists",
+      uponReceiving: "a GET request to /users/2",
       withRequest: {
         method: "GET",
         path: "/users/2",
