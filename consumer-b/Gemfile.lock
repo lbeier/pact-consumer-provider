@@ -86,7 +86,7 @@ DEPENDENCIES
   pact
   pact_broker-client
   pry
-  rack (~> 2.0)
+  rack
   rake
   rspec
 
