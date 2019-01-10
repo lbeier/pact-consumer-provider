@@ -2,7 +2,7 @@
   "name": "consumer",
   "version": "1.0.0",
   "scripts": {
-    "contract-tests": "jest __tests__/ --runInBand",
+    "test:pact": "jest __tests__/ --runInBand",
     "publish:pact": "node ./publishToBrocker.js"
   },
   "jest": {

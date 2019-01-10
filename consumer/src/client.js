@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios')
 
 exports.getUser = (endpoint, id) => {
   const url = endpoint.url

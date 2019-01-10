@@ -21,12 +21,12 @@ describe('Consumer contract with Service A', () => {
   })
 
   beforeAll(done => {
-    provider.setup().then(() => done());
+    provider.setup().then(() => done())
   })
 
   afterAll((done) => {
-    provider.finalize().then(() => done());
-  });
+    provider.finalize().then(() => done())
+  })
 
   afterEach(() => {
     return provider.verify()
@@ -63,7 +63,7 @@ describe('Consumer contract with Service A', () => {
 
   it('should return 404 information if customer doesnt exist', done => {
     provider.addInteraction({
-      state: 'A customer with ID 2 doesn't exists',
+      state: 'A customer with ID 2 doesnt exists',
       uponReceiving: 'a GET request to /users/2',
       withRequest: {
         method: 'GET',
