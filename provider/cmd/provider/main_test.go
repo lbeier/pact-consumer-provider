@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/pact-foundation/pact-go/utils"
-	"io/ioutil"
 	"testing"
 
 	"github.com/gin-gonic/gin"
@@ -51,17 +49,8 @@ func TestPact(t *testing.T) {
 func startServer(port int) {
 	router := gin.Default()
 	router.GET("/users/:id", usersHandler)
-	router.POST("/setup", func(c *gin.Context) {
-		body, _ := ioutil.ReadAll(c.Request.Body)
-
-		var pState types.ProviderState
-		json.Unmarshal(body, &pState)
-
-		switch pState.State {
-		case "A customer with ID 1 exists":
-			fmt.Printf("a customer with ID 1 exists")
-		}
-	})
+	router.GET("/items/:sku", itemsHandler)
+	router.POST("/setup", func(c *gin.Context) {})
 
 	err := router.Run(fmt.Sprintf(":%d", port))
 	if err != nil {

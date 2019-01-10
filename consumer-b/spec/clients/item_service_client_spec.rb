@@ -19,7 +19,7 @@ module Client
               headers: {'Accept' => 'application/json'} ).
           will_respond_with(
             status: 200,
-            headers: {'Content-Type' => 'application/json;charset=utf-8'},
+            headers: {'Content-Type' => 'application/json; charset=utf-8'},
             body: {
               sku: 'ID_00001',
               title: 'Nice product',

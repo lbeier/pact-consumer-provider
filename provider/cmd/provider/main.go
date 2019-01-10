@@ -8,6 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 	router.GET("/users/:id", usersHandler)
+	router.GET("/items/:sku", itemsHandler)
 	err := router.Run(":8989")
 	if err != nil {
 		panic(err)
@@ -36,8 +37,30 @@ func usersHandler(c *gin.Context) {
 		}
 		c.JSON(http.StatusOK, user)
 	default:
-		c.JSON(http.StatusNotFound, gin.H{
-			"user": user{},
-		})
+		c.JSON(http.StatusNotFound, user{})
+	}
+}
+
+type item struct {
+	SKU             string `json:"sku"`
+	Title           string `json:"title"`
+	QuantityInStock int    `json:"quantityInStock"`
+}
+
+func itemsHandler(c *gin.Context) {
+	value := c.Param("sku")
+
+	switch value {
+	case "ID_00002":
+		c.JSON(http.StatusNotFound, item{})
+	case "ID_00001":
+		item := &item{
+			SKU:             "ID_00001",
+			Title:           "Nice product",
+			QuantityInStock: 100,
+		}
+		c.JSON(http.StatusOK, item)
+	default:
+		c.Status(http.StatusBadRequest)
 	}
 }
