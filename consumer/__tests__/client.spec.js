@@ -9,13 +9,13 @@ const ENDPOINT = {
   port: 9999
 }
 
-describe("Consumer contract with Service A", () => {
+describe('Consumer contract with Service A', () => {
   const provider = new Pact({
-    consumer: "a-client",
-    provider: "service-a",
+    consumer: 'frontend-client',
+    provider: 'api-in-go',
     port: 9999,
     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
-    dir: path.resolve(process.cwd(), "pacts"),
+    dir: path.resolve(process.cwd(), 'pacts'),
     pactfileWriteMode: 'update',
     spec: 2,
   })
@@ -32,22 +32,22 @@ describe("Consumer contract with Service A", () => {
     return provider.verify()
   })
 
-  it("should return customer information if customer active", done => {
+  it('should return customer information if customer active', done => {
     provider.addInteraction({
-      state: "A customer with ID 1 exists",
-      uponReceiving: "a GET request to /users/1",
+      state: 'A customer with ID 1 exists',
+      uponReceiving: 'a GET request to /users/1',
       withRequest: {
-        method: "GET",
-        path: "/users/1",
-        headers: { Accept: "application/json" }
+        method: 'GET',
+        path: '/users/1',
+        headers: { Accept: 'application/json' }
       },
       willRespondWith: {
         status: 200,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: {
           id: 1,
-          name: "Customer name",
-          birthday: "1989-02-11",
+          name: 'Customer name',
+          birthday: '1989-02-11',
           isActive: true
         }
       }
@@ -61,18 +61,18 @@ describe("Consumer contract with Service A", () => {
       })
   })
 
-  it("should return 404 information if customer doesn't exist", done => {
+  it('should return 404 information if customer doesnt exist', done => {
     provider.addInteraction({
-      state: "A customer with ID 2 doesn't exists",
-      uponReceiving: "a GET request to /users/2",
+      state: 'A customer with ID 2 doesn't exists',
+      uponReceiving: 'a GET request to /users/2',
       withRequest: {
-        method: "GET",
-        path: "/users/2",
-        headers: { Accept: "application/json" }
+        method: 'GET',
+        path: '/users/2',
+        headers: { Accept: 'application/json' }
       },
       willRespondWith: {
         status: 404,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: {}
       }
     })

@@ -5,8 +5,8 @@ let opts = {
   providerBaseUrl: 'http://provider',
   pactFilesOrDirs: [path.resolve(process.cwd(), 'pacts')],
   pactBroker: 'http://localhost:3000',
-  pactBrokerUsername: 'brocker',
-  pactBrokerPassword: 'brocker',
+  pactBrokerUsername: 'broker',
+  pactBrokerPassword: 'broker',
   consumerVersion: '2.0.0'
 };
 

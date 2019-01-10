@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"testing"
+
+	"github.com/gin-gonic/gin"
 
 	"github.com/pact-foundation/pact-go/dsl"
 	"github.com/pact-foundation/pact-go/types"
@@ -11,8 +12,8 @@ import (
 
 const (
 	PACT_BROKER_HOST     = "http://127.0.0.1:3000"
-	PACT_BROKER_USERNAME = "brocker"
-	PACT_BROKER_PASSWORD = "brocker"
+	PACT_BROKER_USERNAME = "broker"
+	PACT_BROKER_PASSWORD = "broker"
 	PORT                 = 7777
 )
 
@@ -23,7 +24,6 @@ func TestPact(t *testing.T) {
 	pact := dsl.Pact{
 		Provider: "service-a",
 	}
-
 
 	// Verify the Provider - Latest Published Pacts for any known consumers
 	pact.VerifyProvider(t, types.VerifyRequest{
