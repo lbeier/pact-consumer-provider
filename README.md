@@ -13,6 +13,11 @@ Scenario:
 4. There is a `pact-broker` that will receive the contracts published by `frontend-client` and `ruby-service`, will provide to `api-in-go` so the API can test if the interactions are still valid or not and will show the current integration status
 
 ## Screenshots
+### Pacts
 ![](/images/01.png)
+
+### Graph
 ![](/images/02.png)
+
+### Contracts
 ![](/images/03.png)
