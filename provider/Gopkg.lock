@@ -32,6 +32,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:950caca7dfcf796419232ba996c9c3539d09f26af27ba848c4508e604c13efbb"
+  name = "github.com/hashicorp/go-version"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "d40cf49b3a77bba84a7afdbd7f1dc295d114efb1"
+
+[[projects]]
+  branch = "master"
   digest = "1:16ae35b3a854c667baaf55ff5d455c486f7c2baf040a2727f2ef0e4b096b2a95"
   name = "github.com/hashicorp/logutils"
   packages = ["."]
@@ -71,16 +79,18 @@
   version = "1.0.1"
 
 [[projects]]
-  digest = "1:400bc4ad4e98f31157b0f837fbea5c530df8be2396ea7979672aef1cf7ef6587"
+  digest = "1:498fb09e5c99761c50a54fbef36efe493586fe053abb23ee3876f0da7a502e34"
   name = "github.com/pact-foundation/pact-go"
   packages = [
+    "client",
     "dsl",
+    "install",
     "types",
     "utils",
   ]
   pruneopts = "UT"
-  revision = "1567bdaba1c9bccb747cfba1ade5e09b9ccf5eea"
-  version = "v0.0.13"
+  revision = "6ec25718366e22bf3f50b126b9c4db4d91b9cfce"
+  version = "v1.0.0-beta.3"
 
 [[projects]]
   digest = "1:03aa6e485e528acb119fb32901cf99582c380225fc7d5a02758e08b180cb56c3"
@@ -121,6 +131,7 @@
     "github.com/gin-gonic/gin",
     "github.com/pact-foundation/pact-go/dsl",
     "github.com/pact-foundation/pact-go/types",
+    "github.com/pact-foundation/pact-go/utils",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

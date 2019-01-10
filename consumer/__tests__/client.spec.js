@@ -43,7 +43,7 @@ describe('Consumer contract with Service A', () => {
       },
       willRespondWith: {
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: {
           id: 1,
           name: 'Customer name',
@@ -72,8 +72,6 @@ describe('Consumer contract with Service A', () => {
       },
       willRespondWith: {
         status: 404,
-        headers: { 'Content-Type': 'application/json' },
-        body: {}
       }
     })
 

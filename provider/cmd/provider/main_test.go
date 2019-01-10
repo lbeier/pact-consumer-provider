@@ -1,7 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/pact-foundation/pact-go/utils"
+	"io/ioutil"
 	"testing"
 
 	"github.com/gin-gonic/gin"
@@ -11,43 +14,56 @@ import (
 )
 
 const (
-	PACT_BROKER_HOST     = "http://127.0.0.1:3000"
-	PACT_BROKER_USERNAME = "broker"
-	PACT_BROKER_PASSWORD = "broker"
-	PORT                 = 7777
+	logDir             = "./logs"
+	providerName       = "api-in-go"
+	providerVersion    = "1.0.0"
+	pactBrokerHost     = "http://localhost:3000"
+	pactBrokerUsername = "broker"
+	pactBrokerPassword = "broker"
 )
 
 // The actual Provider test itself
 func TestPact(t *testing.T) {
-	go startServer()
-
-	pact := dsl.Pact{
-		Provider: "service-a",
+	port, err := utils.GetFreePort()
+	if err != nil {
+		t.Fatal(err)
 	}
 
-	// Verify the Provider - Latest Published Pacts for any known consumers
+	go startServer(port)
+
+	pact := dsl.Pact{
+		Provider: providerName,
+		LogDir:   logDir,
+		DisableToolValidityCheck: true,
+	}
+
 	pact.VerifyProvider(t, types.VerifyRequest{
-		ProviderBaseURL:            fmt.Sprintf("http://127.0.0.1:%d", PORT),
-		BrokerURL:                  PACT_BROKER_HOST,
-		ProviderStatesSetupURL:     fmt.Sprintf("http://127.0.0.1:%d/setup", PORT),
-		BrokerUsername:             PACT_BROKER_USERNAME,
-		BrokerPassword:             PACT_BROKER_PASSWORD,
+		ProviderBaseURL:            fmt.Sprintf("http://127.0.0.1:%d", port),
+		BrokerURL:                  pactBrokerHost,
+		ProviderStatesSetupURL:     fmt.Sprintf("http://127.0.0.1:%d/setup", port),
+		BrokerUsername:             pactBrokerUsername,
+		BrokerPassword:             pactBrokerPassword,
 		PublishVerificationResults: true,
-		ProviderVersion:            "1.0.0",
+		ProviderVersion:            providerVersion,
 	})
 }
 
-func startServer() {
+func startServer(port int) {
 	router := gin.Default()
-	router.GET("/users", usersHandler)
+	router.GET("/users/:id", usersHandler)
 	router.POST("/setup", func(c *gin.Context) {
-		var state types.ProviderState
-		if c.BindJSON(&state) == nil {
-			fmt.Println(state)
+		body, _ := ioutil.ReadAll(c.Request.Body)
+
+		var pState types.ProviderState
+		json.Unmarshal(body, &pState)
+
+		switch pState.State {
+		case "A customer with ID 1 exists":
+			fmt.Printf("a customer with ID 1 exists")
 		}
 	})
 
-	err := router.Run(fmt.Sprintf(":%d", PORT))
+	err := router.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
 		panic(err)
 	}
