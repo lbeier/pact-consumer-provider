@@ -2,9 +2,9 @@ let publisher = require('@pact-foundation/pact-node');
 let path = require('path');
 
 let opts = {
-  providerBaseUrl: 'http://provider',
+  providerBaseUrl: 'http://127.0.0.1:8989',
   pactFilesOrDirs: [path.resolve(process.cwd(), 'pacts')],
-  pactBroker: 'http://localhost:3000',
+  pactBroker: 'http://127.0.0.1:3000',
   pactBrokerUsername: 'broker',
   pactBrokerPassword: 'broker',
   consumerVersion: '2.0.0'
