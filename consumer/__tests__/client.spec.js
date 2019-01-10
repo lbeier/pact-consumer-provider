@@ -11,10 +11,9 @@ const ENDPOINT = {
 
 describe("Consumer contract with Service A", () => {
   const provider = new Pact({
-    consumer: "A client",
-    provider: "Service A",
+    consumer: "a-client",
+    provider: "service-a",
     port: 9999,
-    pactfileWriteMode: 'update',
     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
     dir: path.resolve(process.cwd(), "pacts"),
     pactfileWriteMode: 'update',
