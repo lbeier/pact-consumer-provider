@@ -1,3 +1,4 @@
+## Motivation
 Simple study about contract tests between consumers and providers using Pact and Pact Broker.
 
 Scenario:
@@ -10,3 +11,8 @@ Scenario:
 3. There is a `ruby-service` that fetches from `api-in-go` using `/item/:sku` endpoint
 
 4. There is a `pact-broker` that will receive the contracts published by `frontend-client` and `ruby-service`, will provide to `api-in-go` so the API can test if the interactions are still valid or not and will show the current integration status
+
+## Screenshots
+![](/images/01.png)
+![](/images/02.png)
+![](/images/03.png)
