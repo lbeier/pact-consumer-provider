@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.1.4.RELEASE'
+        classpath group: 'au.com.dius', name: 'pact-jvm-provider-gradle_2.12', version: '3.6.4'
+    }
+}
+
+apply plugin:  'java'
+apply plugin:  'idea'
+apply plugin:  'au.com.dius.pact'
+
+group 'consumer-java'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.12
+targetCompatibility = 1.12
+
+dependencies {
+    repositories {
+        mavenCentral()
+    }
+    compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.8'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'au.com.dius', name: 'pact-jvm-consumer-junit_2.12', version: '3.6.4'
+}
+
+pact {
+    publish {
+        pactDirectory = 'build/pacts/'
+        pactBrokerUrl = 'http://localhost:3000'
+        pactBrokerUsername = 'broker'
+        pactBrokerPassword = 'broker'
+    }
+}
